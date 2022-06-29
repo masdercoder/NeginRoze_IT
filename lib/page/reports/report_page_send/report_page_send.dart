@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neginroze/page/reports/report_page_send/page.dart';
+import 'package:neginroze/page/reports/report_page_send/report_page_send_models.dart';
 
 class ReportPageSend extends StatefulWidget {
   const ReportPageSend({super.key});
@@ -10,34 +11,67 @@ class ReportPageSend extends StatefulWidget {
 
 class ReportPageSendState extends State<ReportPageSend> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:Colors.black12,
-      body: 
-       ListView( 
-
-        children: <Widget>[
-          Card(
-            margin: const EdgeInsets.all(10),
+      backgroundColor: Colors.black12,
+      body: ListView.builder(
+        itemCount: count(),
+        itemBuilder: (context, index) {
+          return Card(
+            //margin: const EdgeInsets.all(10),
             child: ListTile(
               leading: const Icon(Icons.train_rounded),
-              title: const Text("MAsder"),
-              subtitle: const Text("قطار زندگی مشهد"),
+              title: Text(
+                  ReportPageSendModels.trainName[index].nameTrain.toString()),
+              subtitle:
+                  Text(ReportPageSendModels.trainName[index].model.toString()),
               dense: false,
               onTap: () {},
             ),
-          ),
-          //onTap: () {},
-        ],
+          );
+        },
+
+        //onTap: () {},
       ),
-      
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          PageHomeTrain().showInformationDialog(context);
+          _navigateAndDisplay();
+          //  PageHomeTrain().showInformationDialog(context);
         },
         backgroundColor: Colors.green,
         child: const Icon(Icons.add),
       ),
     );
+  }
+
+  int count() {
+    int a = 0;
+    for (var i in ReportPageSendModels.trainName) {
+      if (i.addDrop == true) a++;
+    }
+    return a;
+  }
+
+  _navigateAndDisplay() async {
+    for (var i in ReportPageSendModels.trainName) {
+      print("33=====> " + i.model.toString());
+    }
+    await PageHomeTrain().showInformationDialog(context);
+    setState(() {});
+
+    for (var i in ReportPageSendModels.trainName) {
+      print("44=====> " + i.model.toString());
+    }
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) => SinglePage(data: data),
+    //   ),
+    // );
   }
 }
