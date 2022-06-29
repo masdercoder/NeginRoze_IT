@@ -12,14 +12,17 @@ class ReportPageSendState extends State<ReportPageSend> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
+      backgroundColor:Colors.black12,
+      body: 
+       ListView( 
+
         children: <Widget>[
           Card(
             margin: const EdgeInsets.all(10),
             child: ListTile(
-              leading: Icon(Icons.train_rounded),
-              title: Text("MAsder"),
-              subtitle: Text("قطار زندگی مشهد"),
+              leading: const Icon(Icons.train_rounded),
+              title: const Text("MAsder"),
+              subtitle: const Text("قطار زندگی مشهد"),
               dense: false,
               onTap: () {},
             ),
@@ -27,6 +30,7 @@ class ReportPageSendState extends State<ReportPageSend> {
           //onTap: () {},
         ],
       ),
+      
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           PageHomeTrain().showInformationDialog(context);
