@@ -67,11 +67,7 @@ class ReportPageSendState extends State<ReportPageSend> {
     for (var i in ReportPageSendModels.trainName) {
       print("44=====> " + i.model.toString());
     }
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (context) => SinglePage(data: data),
-    //   ),
-    // );
+   
+  
   }
 }
