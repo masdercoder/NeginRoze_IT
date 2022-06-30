@@ -5,24 +5,11 @@ import 'package:neginroze/page/reports/report_page_send/report_page_send.dart';
 import 'package:neginroze/page/reports/report_page_send/report_page_send_models.dart';
 
 class PageHomeTrain {
-  // List<ReportPageSendModels> trainName = [
-  //   ReportPageSendModels(
-  //       nameTrain: "قطار زندگی رام 1", valueTrain: "1", addDrop: false),
-  //   ReportPageSendModels(
-  //       nameTrain: "قطار زندگی رام 2", valueTrain: "2", addDrop: false),
-  //   ReportPageSendModels(
-  //       nameTrain: "قطار 5 ستاره زندگی رشت", valueTrain: "3", addDrop: false),
-  //   ReportPageSendModels(
-  //       nameTrain: "قطار 4 ستاره رشت", valueTrain: "4", addDrop: false),
-  //   ReportPageSendModels(
-  //       nameTrain: "قطار اصفهان 1", valueTrain: "5", addDrop: false),
-  //   ReportPageSendModels(
-  //       nameTrain: "قطار اصفهان 2", valueTrain: "6", addDrop: false),
-  // ];
 
   Future<void> showInformationDialog(BuildContext context) async {
     String? _dropdownValue;
     String _value = "سیر";
+    String? _radioValue;
     return await showDialog(
       context: context,
       builder: (context) {
@@ -44,7 +31,6 @@ class PageHomeTrain {
                       ),
                       DropdownButtonHideUnderline(
                         child: DropdownButton(
-                          // iconEnabledColor: Colors.indigo,
                           borderRadius: BorderRadius.circular(20),
                           alignment: Alignment.center,
                           icon: const Icon(Icons.train),
@@ -63,7 +49,7 @@ class PageHomeTrain {
                                 value: itemone.valueTrain,
                                 child: Text(
                                   itemone.nameTrain.toString(),
-                                  style: TextStyle(color: Colors.redAccent),
+                                  style: const TextStyle(color: Colors.redAccent),
                                 ),
                               );
                             } else {
@@ -73,7 +59,7 @@ class PageHomeTrain {
                                 value: itemone.valueTrain,
                                 child: Text(
                                   itemone.nameTrain.toString(),
-                                  style: TextStyle(color: Colors.black),
+                                  style: const TextStyle(color: Colors.black),
                                 ),
                               );
                             }
@@ -107,6 +93,7 @@ class PageHomeTrain {
                                 onChanged: (value) {
                                   setState(() {
                                     _value = value!;
+                                    _radioValue="سکو";
                                   });
                                 },
                               ),
@@ -125,6 +112,7 @@ class PageHomeTrain {
                                 onChanged: (value) {
                                   setState(() {
                                     _value = value!;
+                                     _radioValue="سیر";
                                   });
                                 },
                               ),
@@ -159,43 +147,32 @@ class PageHomeTrain {
                         width: 10,
                       ),
                       ElevatedButton(
-                        onPressed: _dropdownValue == null && _value == null
+                        onPressed: _dropdownValue == null 
                             ? null
                             : () {
-                                print("=====>" + _value);
-                                setState(() {
+                                print("=====>" + _radioValue.toString());
+                                //setState(() {
                                   ReportPageSendModels.trainName
                                       .asMap()
                                       .forEach((key, value) {
                                     if (value.valueTrain == _dropdownValue) {
                                       ReportPageSendModels
                                           .trainName[key].addDrop = true;
-                                      //  ReportPageSendModels
-                                      //.trainName[key].model = _value;
-                                      _value == null
-                                          ? ReportPageSendModels
-                                              .trainName[key].model = "سیر"
-                                          : ReportPageSendModels
-                                              .trainName[key].model = _value;
+                                    
+                                      
+                                      // _value == null
+                                      //     ? ReportPageSendModels
+                                      //         .trainName[key].model = "سیر"
+                                           ReportPageSendModels
+                                              .trainName[key].model = _radioValue;
 
-                                      print("22=====>" + _value);
+                                      print("22=====>" + _radioValue.toString());
                                     }
                                   });
-                                });
+                                //});
                                 Navigator.pop(context);
 
-                                ReportPageSendModels.trainName
-                                    .asMap()
-                                    .forEach((key, value) {
-                                  print("## key:" +
-                                      key.toString() +
-                                      "  ## value:" +
-                                      value.nameTrain.toString() +
-                                      "  ## addDrop:" +
-                                      value.addDrop.toString() +
-                                      "  ## addmodel:" +
-                                      value.model.toString());
-                                });
+                             
                               },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.green,
@@ -213,4 +190,4 @@ class PageHomeTrain {
       },
     );
   }
-}
+  }
