@@ -20,8 +20,21 @@ class ReportPageSendState extends State<ReportPageSend> {
     return Scaffold(
       backgroundColor: Colors.black12,
       body: ListView.builder(
-        itemCount: count(),
-        itemBuilder: (context, index) {
+        itemCount: 5,//count(),
+        itemBuilder:
+
+
+        
+        
+        
+        
+        
+        
+         (context, index) {
+
+
+
+          if( ReportPageSendModels.trainName[index].addDrop==true){
           return Card(
             //margin: const EdgeInsets.all(10),
             child: ListTile(
@@ -34,6 +47,8 @@ class ReportPageSendState extends State<ReportPageSend> {
               onTap: () {},
             ),
           );
+          }else return const Text("ماموریت خود را شروع کنید");
+
         },
 
         //onTap: () {},
