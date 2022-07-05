@@ -23,31 +23,26 @@ class ReportPageSendState extends State<ReportPageSend> {
         itemCount: 5,//count(),
         itemBuilder:
 
-
-        
-        
-        
-        
-        
-        
-         (context, index) {
+         (context, index)  {
+ t();
+return Text("data");
 
 
 
-          if( ReportPageSendModels.trainName[index].addDrop==true){
-          return Card(
-            //margin: const EdgeInsets.all(10),
-            child: ListTile(
-              leading: const Icon(Icons.train_rounded),
-              title: Text(
-                  ReportPageSendModels.trainName[index].nameTrain.toString()),
-              subtitle:
-                  Text(ReportPageSendModels.trainName[index].model.toString()),
-              dense: false,
-              onTap: () {},
-            ),
-          );
-          }else return const Text("ماموریت خود را شروع کنید");
+          // if( ReportPageSendModels.trainName[index].addDrop==true){
+          // return Card(
+          //   //margin: const EdgeInsets.all(10),
+          //   child: ListTile(
+          //     leading: const Icon(Icons.train_rounded),
+          //     title: Text(
+          //         ReportPageSendModels.trainName[index].nameTrain.toString()),
+          //     subtitle:
+          //         Text(ReportPageSendModels.trainName[index].model.toString()),
+          //     dense: false,
+          //     onTap: () {},
+          //   ),
+          // );
+          // }else return const Text("ماموریت خود را شروع کنید");
 
         },
 
@@ -84,5 +79,24 @@ class ReportPageSendState extends State<ReportPageSend> {
     }
    
   
+  }
+  
+  Future t() async{
+var result= ReportPageSendModels.trainName.where((element) => element.addDrop==true);
+
+result.map((e) {
+  return Card(
+            //margin: const EdgeInsets.all(10),
+            child: ListTile(
+              leading: const Icon(Icons.train_rounded),
+              title: Text(
+                 e.nameTrain.toString()),
+              subtitle:
+                  Text(e.model.toString()),
+              dense: false,
+              onTap: () {},
+            ),
+          );
+});
   }
 }
